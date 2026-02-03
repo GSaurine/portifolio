@@ -1,0 +1,153 @@
+.project-card {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid rgba(102, 126, 234, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  height: 100%;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #D4AF37 0%, #FFD700 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(212, 175, 55, 0.2);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.project-card:hover::before {
+  transform: scaleX(1);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+  flex: 1;
+  word-break: break-word;
+}
+
+.card-link {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  color: #D4AF37;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .card-link {
+  opacity: 1;
+  transform: rotate(45deg) scale(1.1);
+}
+
+.card-description {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.language-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #D4AF37;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.language-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.updated-date {
+  color: #999;
+  font-size: 0.8rem;
+}
+
+.card-stats {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.stat svg {
+  color: #D4AF37;
+}
+
+@media (max-width: 768px) {
+  .project-card {
+    padding: 1.25rem;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  .card-description {
+    font-size: 0.9rem;
+    -webkit-line-clamp: 2;
+  }
+}
