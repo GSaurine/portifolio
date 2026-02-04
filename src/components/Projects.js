@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Projects.css';
 import ProjectCard from './ProjectCard';
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Projects() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const projectsGridRef = useRef(null);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -37,6 +42,33 @@ function Projects() {
     fetchProjects();
   }, []);
 
+  // Animar cards com GSAP quando a página tiver a grid visível
+  useEffect(() => {
+    if (projectsGridRef.current && projects.length > 0) {
+      const cards = projectsGridRef.current.querySelectorAll('.project-card');
+      
+      gsap.fromTo(
+        cards,
+        {
+          opacity: 0,
+          y: 50,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: projectsGridRef.current,
+            start: 'top 80%',
+            once: true,
+          },
+        }
+      );
+    }
+  }, [projects]);
+
   return (
     <section id="projects" className="projects">
       <div className="projects-container">
@@ -61,7 +93,7 @@ function Projects() {
         )}
 
         {!loading && !error && projects.length > 0 && (
-          <div className="projects-grid">
+          <div className="projects-grid" ref={projectsGridRef}>
             {projects.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}

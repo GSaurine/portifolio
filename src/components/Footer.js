@@ -41,6 +41,8 @@ function Footer() {
               <span className="tech-tag">JavaScript</span>
               <span className="tech-tag">Python</span>
               <span className="tech-tag">Node.js</span>
+              <span className="tech-tag">Flutter</span>
+              <span className="tech-tag">Docker</span>
             </div>
           </div>
         </div>
